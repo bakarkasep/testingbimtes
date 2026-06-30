@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cbt-bimtes
+    runtime: php
+    buildCommand: "composer install --no-dev --optimize-autoloader && php artisan migrate --force && npm install && npm run build"
+    startCommand: "apache2-foreground"
+    envVars:
+      - key: APP_KEY
+        generate: true
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
